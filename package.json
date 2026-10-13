@@ -1,0 +1,50 @@
+{
+  "name": "genai-eval-check",
+  "version": "1.0.0",
+  "description": "Scores answers that a generative system already gave against an evaluation set, as plain string checking. Reads a file of cases (JSON Lines, CSV or TSV) with questions, expected facts, allowed sources and the answers given, and lists answers that miss expected facts, cite sources outside the allowed set, contain forbidden phrases or leak strings that look like secrets or personal data, with the pass rate of each category, which a build can fail on. Never calls a model; it does not judge truth beyond the facts listed and is not a full evaluation of a model. Contacts nothing over the network, reads no clock, writes nothing. Text, markdown, JSON, SARIF and JUnit output, exit codes for a pipeline, no dependencies.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "genai-eval-check": "bin/genai-eval-check.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "docs",
+    "examples",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "test:coverage": "node --test --experimental-test-coverage \"test/*.test.js\"",
+    "check": "node tools/check.mjs",
+    "example": "node tools/example.mjs"
+  },
+  "keywords": [
+    "evaluation",
+    "evaluation-set",
+    "generative-models",
+    "rag",
+    "testing",
+    "ci",
+    "junit",
+    "sarif",
+    "quality",
+    "cli",
+    "nodejs"
+  ],
+  "author": "INNERLUXES <info@innerluxes.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/INNERLUXES/genai-eval-check.git"
+  },
+  "homepage": "https://innerluxes.dev/artificial-intelligence/generative-ai"
+}
