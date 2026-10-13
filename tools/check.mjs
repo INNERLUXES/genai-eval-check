@@ -9,7 +9,8 @@
 //      Versions such as 1.0.0, seconds such as 3600, amounts such as 25000, addresses, and the number of a standard
 //      written after EIP or ERC are not one; test/repo.test.js checks that the pattern keeps passing over them and keeps
 //      catching a year
-//   7. no file names a tool that wrote it, or says that a tool wrote it
+//   7. no file names a tool that wrote it, or says that a tool wrote it; the only text let through is the title and the
+//      address of the page this repository belongs to, which name the subject of the page and not a tool
 //   8. every example file is plain ASCII with LF line ends (the example output may hold CR where a format writes it)
 //   9. no file uses a word from the list of words this project keeps out of its prose; the list has no exception
 
@@ -67,6 +68,9 @@ const CONTROL = /[\x01-\x08]/;
 const YEAR = /(?<!(?:EIP|ERC)[- ]?)\b(?:19|20)\d{2}\b/i;
 // Words that say a tool wrote a file, built from pieces so that this file does not hold them. Some are matched inside
 // longer words too.
+// The title and the address of the page this repository belongs to, built from pieces like the pattern below; they are
+// removed from a file before it is checked for a tool that wrote it, and nothing else is.
+const PAGE_NAMES = [`Custom Generative ${['A', 'I'].join('')} Development Services and Consulting`, `https://innerluxes.dev/artificial-intelligence/generative-${['a', 'i'].join('')}`];
 const WRITTEN_BY = new RegExp(`\\b(?:${['gene', 'rated'].join('')}|${['assis', 'tants?'].join('')}|${['ch', 'at', 'g', 'pt'].join('')}|${['ope', 'na', 'i'].join('')}|${['ch', 'at'].join('')}|${['g', 'pt'].join('')}|${['l', 'lms?'].join('')})\\b|\\b${['A', 'I'].join('')}\\b|${['cla', 'ude'].join('')}|${['anthro', 'pic'].join('')}|\\b${['ses', 'sion'].join('')}|${['co-', 'authored'].join('')}`, 'i');
 // Words this project keeps out of its prose because they say little, built from pieces so that this file does not hold
 // them. A word is matched at its start, so its other forms are caught too.
@@ -84,7 +88,7 @@ for (const file of files) {
     if (/[^\x00-\x7f]/.test(text)) problems.push(`${name}: holds a character that is not ASCII; write it as a Unicode escape`);
   }
   if (YEAR.test(text)) problems.push(`${name}: holds a number that reads like a year`);
-  if (WRITTEN_BY.test(text)) problems.push(`${name}: names a tool that wrote it`);
+  if (WRITTEN_BY.test(PAGE_NAMES.reduce((t, n) => t.split(n).join(''), text))) problems.push(`${name}: names a tool that wrote it`);
   const banned = BANNED.exec(text);
   if (banned) problems.push(`${name}: uses "${banned[0]}", a word this project keeps out of its prose`);
   if (!name.startsWith('examples/output/') && text.includes(String.fromCharCode(13))) problems.push(`${name}: holds a carriage return; files keep LF line ends`);

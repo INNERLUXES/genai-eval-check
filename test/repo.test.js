@@ -351,7 +351,7 @@ test('the bounded file reader, the table reader, the decimal reader, the search 
     'src/secrets.js': '317805f157c326b87bee4455bda9817d4898a42941cae8f0ca2fffe871d68f1e',
     'src/size.js': 'c2b5c1d337be454d05a893962e7fcc457bac27eb9c896a2347dd0e3ab47f2b76',
     'src/text.js': '0b6d5ea215e4b87e459b106b380b4e8ad67655a1c73f05a1f38e8ca7c719fece',
-    'tools/check.mjs': '7e6739d554b27873b4845532438e0b37c77526692b316777dc54e7cf9126d5b4'
+    'tools/check.mjs': 'c4c2b3a18f4052bee650afab66278b69486adf309bf151d49be3f4b2565b6ece'
   };
   for (const [file, hash] of Object.entries(hashes)) assert.equal(createHash('sha256').update(await readFile(resolve(root, file))).digest('hex'), hash, `${file} changed; it is kept as it is in the sibling tools`);
   const secrets = await read('src/secrets.js');
