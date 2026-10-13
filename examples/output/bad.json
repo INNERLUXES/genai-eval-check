@@ -1,0 +1,736 @@
+{
+  "tool": "genai-eval-check",
+  "version": "1.0.0",
+  "input": {
+    "file": "examples/bad/cases.jsonl",
+    "format": "JSONL",
+    "bytes": 4336,
+    "lines": 22
+  },
+  "summary": {
+    "records": 22,
+    "evaluated": 15,
+    "leftOut": 7,
+    "passed": 7,
+    "failed": 8,
+    "passRate": "46.7",
+    "categories": [
+      {
+        "category": "motor",
+        "cases": 3,
+        "passed": 1,
+        "failed": 2,
+        "passRate": "33.3",
+        "minimum": "90",
+        "below": true
+      },
+      {
+        "category": "home",
+        "cases": 3,
+        "passed": 1,
+        "failed": 2,
+        "passRate": "33.3",
+        "minimum": "90",
+        "below": true
+      },
+      {
+        "category": "travel",
+        "cases": 3,
+        "passed": 0,
+        "failed": 3,
+        "passRate": "0.0",
+        "minimum": "90",
+        "below": true
+      },
+      {
+        "category": "claims",
+        "cases": 3,
+        "passed": 2,
+        "failed": 1,
+        "passRate": "66.7",
+        "minimum": "90",
+        "below": true
+      },
+      {
+        "category": "(no category)",
+        "cases": 1,
+        "passed": 1,
+        "failed": 0,
+        "passRate": "100.0",
+        "minimum": "90",
+        "below": false
+      },
+      {
+        "category": "boundaries",
+        "cases": 2,
+        "passed": 2,
+        "failed": 0,
+        "passRate": "100.0",
+        "minimum": "90",
+        "below": false
+      }
+    ]
+  },
+  "cases": [
+    {
+      "index": 0,
+      "id": "motor-001",
+      "category": "motor",
+      "line": 1,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 1,
+      "id": "motor-002",
+      "category": "motor",
+      "line": 2,
+      "passed": false,
+      "findings": [
+        "fact-missing"
+      ]
+    },
+    {
+      "index": 2,
+      "id": "motor-003",
+      "category": "motor",
+      "line": 3,
+      "passed": false,
+      "findings": [
+        "fact-missing",
+        "forbidden-phrase"
+      ]
+    },
+    {
+      "index": 3,
+      "id": "home-001",
+      "category": "home",
+      "line": 4,
+      "passed": false,
+      "findings": [
+        "source-not-allowed"
+      ]
+    },
+    {
+      "index": 4,
+      "id": "home-002",
+      "category": "home",
+      "line": 5,
+      "passed": false,
+      "findings": [
+        "source-missing"
+      ]
+    },
+    {
+      "index": 5,
+      "id": "travel-001",
+      "category": "travel",
+      "line": 6,
+      "passed": false,
+      "findings": [
+        "refusal-expected-but-answered"
+      ]
+    },
+    {
+      "index": 6,
+      "id": "travel-002",
+      "category": "travel",
+      "line": 7,
+      "passed": false,
+      "findings": [
+        "fact-missing",
+        "answered-expected-refusal-instead"
+      ]
+    },
+    {
+      "index": 7,
+      "id": "travel-003",
+      "category": "travel",
+      "line": 8,
+      "passed": false,
+      "findings": [
+        "answer-too-long"
+      ]
+    },
+    {
+      "index": 8,
+      "id": "claims-001",
+      "category": "claims",
+      "line": 9,
+      "passed": false,
+      "findings": [
+        "secret-like"
+      ]
+    },
+    {
+      "index": 9,
+      "id": "claims-002",
+      "category": "claims",
+      "line": 10,
+      "passed": true,
+      "findings": [
+        "pii-like"
+      ]
+    },
+    {
+      "index": 10,
+      "id": "general-001",
+      "category": "",
+      "line": 12,
+      "passed": true,
+      "findings": [
+        "case-checks-nothing"
+      ]
+    },
+    {
+      "index": 11,
+      "id": "claims-003",
+      "category": "claims",
+      "line": 13,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 12,
+      "id": "home-003",
+      "category": "home",
+      "line": 15,
+      "passed": true,
+      "findings": [
+        "case-checks-nothing"
+      ]
+    },
+    {
+      "index": 13,
+      "id": "boundaries-001",
+      "category": "boundaries",
+      "line": 21,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 14,
+      "id": "boundaries-002",
+      "category": "boundaries",
+      "line": 22,
+      "passed": true,
+      "findings": []
+    }
+  ],
+  "totals": {
+    "findings": 27,
+    "byLevel": {
+      "error": 24,
+      "warning": 3,
+      "info": 0
+    },
+    "hidden": 0
+  },
+  "rules": [
+    {
+      "id": "file-unreadable",
+      "level": "error",
+      "kind": "input",
+      "findings": 0
+    },
+    {
+      "id": "record-unreadable",
+      "level": "error",
+      "kind": "input",
+      "findings": 3
+    },
+    {
+      "id": "field-missing",
+      "level": "error",
+      "kind": "input",
+      "findings": 2
+    },
+    {
+      "id": "field-unknown",
+      "level": "error",
+      "kind": "input",
+      "findings": 1
+    },
+    {
+      "id": "field-invalid",
+      "level": "error",
+      "kind": "input",
+      "findings": 2
+    },
+    {
+      "id": "id-duplicate",
+      "level": "error",
+      "kind": "input",
+      "findings": 1
+    },
+    {
+      "id": "question-empty",
+      "level": "error",
+      "kind": "input",
+      "findings": 1
+    },
+    {
+      "id": "case-checks-nothing",
+      "level": "warning",
+      "kind": "case",
+      "findings": 2
+    },
+    {
+      "id": "fact-missing",
+      "level": "error",
+      "kind": "case",
+      "findings": 3
+    },
+    {
+      "id": "source-not-allowed",
+      "level": "error",
+      "kind": "case",
+      "findings": 1
+    },
+    {
+      "id": "source-missing",
+      "level": "error",
+      "kind": "case",
+      "findings": 1
+    },
+    {
+      "id": "forbidden-phrase",
+      "level": "error",
+      "kind": "case",
+      "findings": 1
+    },
+    {
+      "id": "refusal-expected-but-answered",
+      "level": "error",
+      "kind": "case",
+      "findings": 1
+    },
+    {
+      "id": "answered-expected-refusal-instead",
+      "level": "error",
+      "kind": "case",
+      "findings": 1
+    },
+    {
+      "id": "answer-too-long",
+      "level": "error",
+      "kind": "case",
+      "findings": 1
+    },
+    {
+      "id": "secret-like",
+      "level": "error",
+      "kind": "case",
+      "findings": 1
+    },
+    {
+      "id": "pii-like",
+      "level": "warning",
+      "kind": "case",
+      "findings": 1
+    },
+    {
+      "id": "category-pass-rate-below",
+      "level": "error",
+      "kind": "category",
+      "findings": 4
+    }
+  ],
+  "options": {
+    "minSeverity": "info",
+    "failOn": "error",
+    "minPassRate": "90",
+    "categoryMin": [],
+    "stripPunctuation": false,
+    "maxChars": null,
+    "refusalPhrases": "default list",
+    "allowEmailDomains": []
+  },
+  "findings": [
+    {
+      "id": "field-missing",
+      "severity": "error",
+      "message": "The record has no \"id\", which every case needs; the record was left out.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 11,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:11",
+      "subject": "id",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Give every case an id and the answer that was given. An empty answer is a result too: write what the system returned, and let the other checks fail it.",
+      "kind": "input"
+    },
+    {
+      "id": "question-empty",
+      "severity": "error",
+      "message": "The case \"claims-003\" has no question.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 13,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:13",
+      "subject": "claims-003",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Write the question that was asked, so a person reading a finding can see what the answer was for.",
+      "kind": "input"
+    },
+    {
+      "id": "id-duplicate",
+      "severity": "error",
+      "message": "The id \"MOTOR-001\" is the id of the case on line 1 too; the second record was left out.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 14,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:14",
+      "subject": "MOTOR-001",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Give every case an id of its own.",
+      "kind": "input"
+    },
+    {
+      "id": "field-unknown",
+      "severity": "error",
+      "message": "The field \"expected_fact\" is not a field the tool reads; did you mean \"expected_facts\"? Nothing under it is checked.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 15,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:15",
+      "subject": "expected_fact",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Correct the name to a field of docs/inputs.md, or take the field out of the file.",
+      "kind": "input"
+    },
+    {
+      "id": "field-invalid",
+      "severity": "error",
+      "message": "The field \"must_refuse\" is \"maybe\", and must_refuse is yes, no or empty; the record was left out.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 16,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:16",
+      "subject": "must_refuse",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Write the field as docs/inputs.md says: lists as JSON lists or as \";\" lists in a cell, must_refuse as yes or no, max_chars as a whole number.",
+      "kind": "input"
+    },
+    {
+      "id": "field-invalid",
+      "severity": "error",
+      "message": "The field \"max_chars\" is \"ten\", and max_chars is a whole number from 1 to 100,000,000; the record was left out.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 16,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:16",
+      "subject": "max_chars",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Write the field as docs/inputs.md says: lists as JSON lists or as \";\" lists in a cell, must_refuse as yes or no, max_chars as a whole number.",
+      "kind": "input"
+    },
+    {
+      "id": "field-missing",
+      "severity": "error",
+      "message": "The case \"home-005\" has no \"answer\" (an empty answer is a missing one); the record was left out.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 17,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:17",
+      "subject": "answer",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Give every case an id and the answer that was given. An empty answer is a result too: write what the system returned, and let the other checks fail it.",
+      "kind": "input"
+    },
+    {
+      "id": "record-unreadable",
+      "severity": "error",
+      "message": "The line is not valid JSON (near character 114); the record was left out.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 18,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:18",
+      "subject": null,
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Fix the line named: one JSON object on each line, or a cell with a comma, a tab or a line end inside double quotes.",
+      "kind": "input"
+    },
+    {
+      "id": "record-unreadable",
+      "severity": "error",
+      "message": "The line is a list, and every line of a JSON Lines file is an object; the record was left out.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 19,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:19",
+      "subject": null,
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Fix the line named: one JSON object on each line, or a cell with a comma, a tab or a line end inside double quotes.",
+      "kind": "input"
+    },
+    {
+      "id": "record-unreadable",
+      "severity": "error",
+      "message": "The record is nested deeper than 4 levels, which no case needs; it was not parsed and was left out.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 20,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:20",
+      "subject": null,
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Fix the line named: one JSON object on each line, or a cell with a comma, a tab or a line end inside double quotes.",
+      "kind": "input"
+    },
+    {
+      "id": "fact-missing",
+      "severity": "error",
+      "message": "The case \"motor-002\" misses 2 expected facts: \"standard excess is 250\" and \"windscreen\".",
+      "file": "examples/bad/cases.jsonl",
+      "line": 2,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:2",
+      "subject": "motor-002",
+      "caseId": "motor-002",
+      "caseIndex": 1,
+      "fix": "Check the answer for the fact. If the answer says it in other words, add the wording to the group in any_of; if the fact is wrong, correct it.",
+      "kind": "case"
+    },
+    {
+      "id": "fact-missing",
+      "severity": "error",
+      "message": "The case \"motor-003\" misses 1 expected fact: one of \"subject to the policy terms\" or \"subject to the terms of your policy\".",
+      "file": "examples/bad/cases.jsonl",
+      "line": 3,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:3",
+      "subject": "motor-003",
+      "caseId": "motor-003",
+      "caseIndex": 2,
+      "fix": "Check the answer for the fact. If the answer says it in other words, add the wording to the group in any_of; if the fact is wrong, correct it.",
+      "kind": "case"
+    },
+    {
+      "id": "forbidden-phrase",
+      "severity": "error",
+      "message": "The case \"motor-003\" holds the forbidden phrase \"guaranteed payout\".",
+      "file": "examples/bad/cases.jsonl",
+      "line": 3,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:3",
+      "subject": "motor-003",
+      "caseId": "motor-003",
+      "caseIndex": 2,
+      "fix": "Remove the phrase from the answer, or take it out of the list if it is allowed after all.",
+      "kind": "case"
+    },
+    {
+      "id": "source-not-allowed",
+      "severity": "error",
+      "message": "The case \"home-001\" cites sources outside the allowed set: \"https://www.example.com/blog/flood-tips\", \"doc:policy-travel-2\" and the marker [4], which sources does not explain.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 4,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:4",
+      "subject": "home-001",
+      "caseId": "home-001",
+      "caseIndex": 3,
+      "fix": "Remove the citation from the answer, or add the source to allowed_sources if it is a source the answer may use.",
+      "kind": "case"
+    },
+    {
+      "id": "source-missing",
+      "severity": "error",
+      "message": "The case \"home-002\" lists 1 allowed source, but the answer cites none.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 5,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:5",
+      "subject": "home-002",
+      "caseId": "home-002",
+      "caseIndex": 4,
+      "fix": "Make the system cite its source, or take allowed_sources out of the case if the answer needs none.",
+      "kind": "case"
+    },
+    {
+      "id": "refusal-expected-but-answered",
+      "severity": "error",
+      "message": "The case \"travel-001\" expects a refusal, but the answer holds none of the 23 refusal phrases.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 6,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:6",
+      "subject": "travel-001",
+      "caseId": "travel-001",
+      "caseIndex": 5,
+      "fix": "Look at the answer. If it is a refusal in words the list does not know, add the phrase with --refusal-phrases; if it is an answer, the system needs fixing.",
+      "kind": "case"
+    },
+    {
+      "id": "answered-expected-refusal-instead",
+      "severity": "error",
+      "message": "The case \"travel-002\" expects an answer, but the answer holds the refusal phrase \"i cannot\".",
+      "file": "examples/bad/cases.jsonl",
+      "line": 7,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:7",
+      "subject": "travel-002",
+      "caseId": "travel-002",
+      "caseIndex": 6,
+      "fix": "Look at the answer. If it is a real answer that happens to hold a refusal phrase, change the list with --refusal-phrases; if it is a refusal, the system needs fixing.",
+      "kind": "case"
+    },
+    {
+      "id": "fact-missing",
+      "severity": "error",
+      "message": "The case \"travel-002\" misses 1 expected fact: \"medical costs abroad are covered\".",
+      "file": "examples/bad/cases.jsonl",
+      "line": 7,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:7",
+      "subject": "travel-002",
+      "caseId": "travel-002",
+      "caseIndex": 6,
+      "fix": "Check the answer for the fact. If the answer says it in other words, add the wording to the group in any_of; if the fact is wrong, correct it.",
+      "kind": "case"
+    },
+    {
+      "id": "answer-too-long",
+      "severity": "error",
+      "message": "The case \"travel-003\" has an answer of 137 characters; the limit is 60.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 8,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:8",
+      "subject": "travel-003",
+      "caseId": "travel-003",
+      "caseIndex": 7,
+      "fix": "Shorten the answer, or raise the limit if it was set too low.",
+      "kind": "case"
+    },
+    {
+      "id": "secret-like",
+      "severity": "error",
+      "message": "The answer of the case \"claims-001\" holds 2 things shaped like a secret: a seed phrase at character 46 and a private key in hex at character 159. The values are not shown.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 9,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:9",
+      "subject": "claims-001",
+      "caseId": "claims-001",
+      "caseIndex": 8,
+      "fix": "Treat the string as exposed if it is real: remove it from the answer and from every place the file was copied to, and make the system stop printing it. If it is a made-up value, change it.",
+      "kind": "case"
+    },
+    {
+      "id": "category-pass-rate-below",
+      "severity": "error",
+      "message": "In the category \"motor\" 1 of 3 cases pass (33.3 percent), below the minimum of 90 percent.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 1,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:1",
+      "subject": "motor",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Fix the cases of the category that fail, listed above in the same report, or change the minimum if it was set too high for what the category is worth.",
+      "kind": "category"
+    },
+    {
+      "id": "category-pass-rate-below",
+      "severity": "error",
+      "message": "In the category \"home\" 1 of 3 cases pass (33.3 percent), below the minimum of 90 percent.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 4,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:4",
+      "subject": "home",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Fix the cases of the category that fail, listed above in the same report, or change the minimum if it was set too high for what the category is worth.",
+      "kind": "category"
+    },
+    {
+      "id": "category-pass-rate-below",
+      "severity": "error",
+      "message": "In the category \"travel\" 0 of 3 cases pass (0.0 percent), below the minimum of 90 percent.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 6,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:6",
+      "subject": "travel",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Fix the cases of the category that fail, listed above in the same report, or change the minimum if it was set too high for what the category is worth.",
+      "kind": "category"
+    },
+    {
+      "id": "category-pass-rate-below",
+      "severity": "error",
+      "message": "In the category \"claims\" 2 of 3 cases pass (66.7 percent), below the minimum of 90 percent.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 9,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:9",
+      "subject": "claims",
+      "caseId": null,
+      "caseIndex": null,
+      "fix": "Fix the cases of the category that fail, listed above in the same report, or change the minimum if it was set too high for what the category is worth.",
+      "kind": "category"
+    },
+    {
+      "id": "pii-like",
+      "severity": "warning",
+      "message": "The answer of the case \"claims-002\" holds 3 things shaped like personal data: an email address at character 41, a phone number at character 75 and a card number at character 109. The values are not shown.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 10,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:10",
+      "subject": "claims-002",
+      "caseId": "claims-002",
+      "caseIndex": 9,
+      "fix": "If the data is real and should not be in an answer, make the system stop printing it. If the address is one the answer may give, list its domain with --allow-email-domains.",
+      "kind": "case"
+    },
+    {
+      "id": "case-checks-nothing",
+      "severity": "warning",
+      "message": "The case \"general-001\" lists no expected fact, no alternatives, no forbidden phrase, no allowed source, no limit and no required refusal, so it can fail only the search for secrets and personal data.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 12,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:12",
+      "subject": "general-001",
+      "caseId": "general-001",
+      "caseIndex": 10,
+      "fix": "Give the case at least one thing to look for, or take it out of the file; a case that cannot fail raises the pass rate.",
+      "kind": "case"
+    },
+    {
+      "id": "case-checks-nothing",
+      "severity": "warning",
+      "message": "The case \"home-003\" lists no expected fact, no alternatives, no forbidden phrase, no allowed source, no limit and no required refusal, so it can fail only the search for secrets and personal data.",
+      "file": "examples/bad/cases.jsonl",
+      "line": 15,
+      "column": 1,
+      "at": "examples/bad/cases.jsonl:15",
+      "subject": "home-003",
+      "caseId": "home-003",
+      "caseIndex": 12,
+      "fix": "Give the case at least one thing to look for, or take it out of the file; a case that cannot fail raises the pass rate.",
+      "kind": "case"
+    }
+  ],
+  "notes": [],
+  "notice": "This report is deterministic string checking of answers that are already in the file. It never calls a model, it does not judge whether an answer is true beyond the facts and phrases the file lists, and it is not a full evaluation of a model.",
+  "result": {
+    "pass": false,
+    "failOn": "error",
+    "text": "FAIL - 24 findings at or above error (24 error, 3 warning)"
+  }
+}

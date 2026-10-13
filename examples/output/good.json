@@ -1,0 +1,308 @@
+{
+  "tool": "genai-eval-check",
+  "version": "1.0.0",
+  "input": {
+    "file": "examples/good/cases.jsonl",
+    "format": "JSONL",
+    "bytes": 4336,
+    "lines": 13
+  },
+  "summary": {
+    "records": 13,
+    "evaluated": 13,
+    "leftOut": 0,
+    "passed": 13,
+    "failed": 0,
+    "passRate": "100.0",
+    "categories": [
+      {
+        "category": "motor",
+        "cases": 3,
+        "passed": 3,
+        "failed": 0,
+        "passRate": "100.0",
+        "minimum": "90",
+        "below": false
+      },
+      {
+        "category": "home",
+        "cases": 3,
+        "passed": 3,
+        "failed": 0,
+        "passRate": "100.0",
+        "minimum": "90",
+        "below": false
+      },
+      {
+        "category": "travel",
+        "cases": 2,
+        "passed": 2,
+        "failed": 0,
+        "passRate": "100.0",
+        "minimum": "90",
+        "below": false
+      },
+      {
+        "category": "claims",
+        "cases": 2,
+        "passed": 2,
+        "failed": 0,
+        "passRate": "100.0",
+        "minimum": "90",
+        "below": false
+      },
+      {
+        "category": "boundaries",
+        "cases": 3,
+        "passed": 3,
+        "failed": 0,
+        "passRate": "100.0",
+        "minimum": "90",
+        "below": false
+      }
+    ]
+  },
+  "cases": [
+    {
+      "index": 0,
+      "id": "motor-001",
+      "category": "motor",
+      "line": 1,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 1,
+      "id": "motor-002",
+      "category": "motor",
+      "line": 2,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 2,
+      "id": "motor-003",
+      "category": "motor",
+      "line": 3,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 3,
+      "id": "home-001",
+      "category": "home",
+      "line": 4,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 4,
+      "id": "home-002",
+      "category": "home",
+      "line": 5,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 5,
+      "id": "home-003",
+      "category": "home",
+      "line": 6,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 6,
+      "id": "travel-001",
+      "category": "travel",
+      "line": 7,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 7,
+      "id": "travel-002",
+      "category": "travel",
+      "line": 8,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 8,
+      "id": "claims-001",
+      "category": "claims",
+      "line": 9,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 9,
+      "id": "claims-002",
+      "category": "claims",
+      "line": 10,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 10,
+      "id": "boundaries-001",
+      "category": "boundaries",
+      "line": 11,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 11,
+      "id": "boundaries-002",
+      "category": "boundaries",
+      "line": 12,
+      "passed": true,
+      "findings": []
+    },
+    {
+      "index": 12,
+      "id": "boundaries-003",
+      "category": "boundaries",
+      "line": 13,
+      "passed": true,
+      "findings": []
+    }
+  ],
+  "totals": {
+    "findings": 0,
+    "byLevel": {
+      "error": 0,
+      "warning": 0,
+      "info": 0
+    },
+    "hidden": 0
+  },
+  "rules": [
+    {
+      "id": "file-unreadable",
+      "level": "error",
+      "kind": "input",
+      "findings": 0
+    },
+    {
+      "id": "record-unreadable",
+      "level": "error",
+      "kind": "input",
+      "findings": 0
+    },
+    {
+      "id": "field-missing",
+      "level": "error",
+      "kind": "input",
+      "findings": 0
+    },
+    {
+      "id": "field-unknown",
+      "level": "error",
+      "kind": "input",
+      "findings": 0
+    },
+    {
+      "id": "field-invalid",
+      "level": "error",
+      "kind": "input",
+      "findings": 0
+    },
+    {
+      "id": "id-duplicate",
+      "level": "error",
+      "kind": "input",
+      "findings": 0
+    },
+    {
+      "id": "question-empty",
+      "level": "error",
+      "kind": "input",
+      "findings": 0
+    },
+    {
+      "id": "case-checks-nothing",
+      "level": "warning",
+      "kind": "case",
+      "findings": 0
+    },
+    {
+      "id": "fact-missing",
+      "level": "error",
+      "kind": "case",
+      "findings": 0
+    },
+    {
+      "id": "source-not-allowed",
+      "level": "error",
+      "kind": "case",
+      "findings": 0
+    },
+    {
+      "id": "source-missing",
+      "level": "error",
+      "kind": "case",
+      "findings": 0
+    },
+    {
+      "id": "forbidden-phrase",
+      "level": "error",
+      "kind": "case",
+      "findings": 0
+    },
+    {
+      "id": "refusal-expected-but-answered",
+      "level": "error",
+      "kind": "case",
+      "findings": 0
+    },
+    {
+      "id": "answered-expected-refusal-instead",
+      "level": "error",
+      "kind": "case",
+      "findings": 0
+    },
+    {
+      "id": "answer-too-long",
+      "level": "error",
+      "kind": "case",
+      "findings": 0
+    },
+    {
+      "id": "secret-like",
+      "level": "error",
+      "kind": "case",
+      "findings": 0
+    },
+    {
+      "id": "pii-like",
+      "level": "warning",
+      "kind": "case",
+      "findings": 0
+    },
+    {
+      "id": "category-pass-rate-below",
+      "level": "error",
+      "kind": "category",
+      "findings": 0
+    }
+  ],
+  "options": {
+    "minSeverity": "info",
+    "failOn": "error",
+    "minPassRate": "90",
+    "categoryMin": [],
+    "stripPunctuation": false,
+    "maxChars": null,
+    "refusalPhrases": "default list",
+    "allowEmailDomains": []
+  },
+  "findings": [],
+  "notes": [],
+  "notice": "This report is deterministic string checking of answers that are already in the file. It never calls a model, it does not judge whether an answer is true beyond the facts and phrases the file lists, and it is not a full evaluation of a model.",
+  "result": {
+    "pass": true,
+    "failOn": "error",
+    "text": "PASS - no finding at or above error"
+  }
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="genai-eval-check" tests="18" failures="0" errors="0" time="0">
+  <testsuite name="motor" tests="3" failures="0" errors="0" skipped="0" time="0">
+    <testcase classname="motor" name="motor-001" file="examples/good/cases.jsonl" line="1" time="0"/>
+    <testcase classname="motor" name="motor-002" file="examples/good/cases.jsonl" line="2" time="0"/>
+    <testcase classname="motor" name="motor-003" file="examples/good/cases.jsonl" line="3" time="0"/>
+  </testsuite>
+  <testsuite name="home" tests="3" failures="0" errors="0" skipped="0" time="0">
+    <testcase classname="home" name="home-001" file="examples/good/cases.jsonl" line="4" time="0"/>
+    <testcase classname="home" name="home-002" file="examples/good/cases.jsonl" line="5" time="0"/>
+    <testcase classname="home" name="home-003" file="examples/good/cases.jsonl" line="6" time="0"/>
+  </testsuite>
+  <testsuite name="travel" tests="2" failures="0" errors="0" skipped="0" time="0">
+    <testcase classname="travel" name="travel-001" file="examples/good/cases.jsonl" line="7" time="0"/>
+    <testcase classname="travel" name="travel-002" file="examples/good/cases.jsonl" line="8" time="0"/>
+  </testsuite>
+  <testsuite name="claims" tests="2" failures="0" errors="0" skipped="0" time="0">
+    <testcase classname="claims" name="claims-001" file="examples/good/cases.jsonl" line="9" time="0"/>
+    <testcase classname="claims" name="claims-002" file="examples/good/cases.jsonl" line="10" time="0"/>
+  </testsuite>
+  <testsuite name="boundaries" tests="3" failures="0" errors="0" skipped="0" time="0">
+    <testcase classname="boundaries" name="boundaries-001" file="examples/good/cases.jsonl" line="11" time="0"/>
+    <testcase classname="boundaries" name="boundaries-002" file="examples/good/cases.jsonl" line="12" time="0"/>
+    <testcase classname="boundaries" name="boundaries-003" file="examples/good/cases.jsonl" line="13" time="0"/>
+  </testsuite>
+  <testsuite name="categories" tests="5" failures="0" errors="0" skipped="0" time="0">
+    <testcase classname="categories" name="pass rate of motor" time="0"/>
+    <testcase classname="categories" name="pass rate of home" time="0"/>
+    <testcase classname="categories" name="pass rate of travel" time="0"/>
+    <testcase classname="categories" name="pass rate of claims" time="0"/>
+    <testcase classname="categories" name="pass rate of boundaries" time="0"/>
+  </testsuite>
+</testsuites>

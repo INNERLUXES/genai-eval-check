@@ -1,0 +1,47 @@
+genai-eval-check: examples/good/cases.jsonl
+file: examples/good/cases.jsonl (JSONL, 13 lines, 4,336 bytes)
+records: 13
+cases: 13 evaluated, 13 pass, 0 fail; pass rate 100.0 percent
+settings: minimum pass rate 90 percent; punctuation kept; refusal phrases: default list
+findings: 0
+
+Categories (5)
+
+  category    cases  pass  fail  pass rate  minimum
+  motor       3      3     0     100.0%     90%
+  home        3      3     0     100.0%     90%
+  travel      2      2     0     100.0%     90%
+  claims      2      2     0     100.0%     90%
+  boundaries  3      3     0     100.0%     90%
+
+A case passes when it has no finding of a check about cases at the error level. The pass rate is the cases that pass over the cases evaluated, rounded to one decimal; it is compared with the minimum exactly.
+
+Checks (18)
+
+  check                              level    kind      findings
+  file-unreadable                    error    input     0
+  record-unreadable                  error    input     0
+  field-missing                      error    input     0
+  field-unknown                      error    input     0
+  field-invalid                      error    input     0
+  id-duplicate                       error    input     0
+  question-empty                     error    input     0
+  case-checks-nothing                warning  case      0
+  fact-missing                       error    case      0
+  source-not-allowed                 error    case      0
+  source-missing                     error    case      0
+  forbidden-phrase                   error    case      0
+  refusal-expected-but-answered      error    case      0
+  answered-expected-refusal-instead  error    case      0
+  answer-too-long                    error    case      0
+  secret-like                        error    case      0
+  pii-like                           warning  case      0
+  category-pass-rate-below           error    category  0
+
+Findings (0)
+
+  none
+
+This report is deterministic string checking of answers that are already in the file. It never calls a model, it does not judge whether an answer is true beyond the facts and phrases the file lists, and it is not a full evaluation of a model.
+
+RESULT: PASS - no finding at or above error

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="genai-eval-check" tests="31" failures="12" errors="10" time="0">
+  <testsuite name="motor" tests="3" failures="2" errors="0" skipped="0" time="0">
+    <testcase classname="motor" name="motor-001" file="examples/bad/cases.jsonl" line="1" time="0"/>
+    <testcase classname="motor" name="motor-002" file="examples/bad/cases.jsonl" line="2" time="0">
+      <failure type="fact-missing" message="fact-missing">fact-missing: The case &quot;motor-002&quot; misses 2 expected facts: &quot;standard excess is 250&quot; and &quot;windscreen&quot;.</failure>
+    </testcase>
+    <testcase classname="motor" name="motor-003" file="examples/bad/cases.jsonl" line="3" time="0">
+      <failure type="fact-missing" message="fact-missing, forbidden-phrase">fact-missing: The case &quot;motor-003&quot; misses 1 expected fact: one of &quot;subject to the policy terms&quot; or &quot;subject to the terms of your policy&quot;.
+forbidden-phrase: The case &quot;motor-003&quot; holds the forbidden phrase &quot;guaranteed payout&quot;.</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="home" tests="3" failures="2" errors="0" skipped="0" time="0">
+    <testcase classname="home" name="home-001" file="examples/bad/cases.jsonl" line="4" time="0">
+      <failure type="source-not-allowed" message="source-not-allowed">source-not-allowed: The case &quot;home-001&quot; cites sources outside the allowed set: &quot;https://www.example.com/blog/flood-tips&quot;, &quot;doc:policy-travel-2&quot; and the marker [4], which sources does not explain.</failure>
+    </testcase>
+    <testcase classname="home" name="home-002" file="examples/bad/cases.jsonl" line="5" time="0">
+      <failure type="source-missing" message="source-missing">source-missing: The case &quot;home-002&quot; lists 1 allowed source, but the answer cites none.</failure>
+    </testcase>
+    <testcase classname="home" name="home-003" file="examples/bad/cases.jsonl" line="15" time="0">
+      <system-out>warning case-checks-nothing: The case &quot;home-003&quot; lists no expected fact, no alternatives, no forbidden phrase, no allowed source, no limit and no required refusal, so it can fail only the search for secrets and personal data.</system-out>
+    </testcase>
+  </testsuite>
+  <testsuite name="travel" tests="3" failures="3" errors="0" skipped="0" time="0">
+    <testcase classname="travel" name="travel-001" file="examples/bad/cases.jsonl" line="6" time="0">
+      <failure type="refusal-expected-but-answered" message="refusal-expected-but-answered">refusal-expected-but-answered: The case &quot;travel-001&quot; expects a refusal, but the answer holds none of the 23 refusal phrases.</failure>
+    </testcase>
+    <testcase classname="travel" name="travel-002" file="examples/bad/cases.jsonl" line="7" time="0">
+      <failure type="answered-expected-refusal-instead" message="answered-expected-refusal-instead, fact-missing">answered-expected-refusal-instead: The case &quot;travel-002&quot; expects an answer, but the answer holds the refusal phrase &quot;i cannot&quot;.
+fact-missing: The case &quot;travel-002&quot; misses 1 expected fact: &quot;medical costs abroad are covered&quot;.</failure>
+    </testcase>
+    <testcase classname="travel" name="travel-003" file="examples/bad/cases.jsonl" line="8" time="0">
+      <failure type="answer-too-long" message="answer-too-long">answer-too-long: The case &quot;travel-003&quot; has an answer of 137 characters; the limit is 60.</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="claims" tests="3" failures="1" errors="0" skipped="0" time="0">
+    <testcase classname="claims" name="claims-001" file="examples/bad/cases.jsonl" line="9" time="0">
+      <failure type="secret-like" message="secret-like">secret-like: The answer of the case &quot;claims-001&quot; holds 2 things shaped like a secret: a seed phrase at character 46 and a private key in hex at character 159. The values are not shown.</failure>
+    </testcase>
+    <testcase classname="claims" name="claims-002" file="examples/bad/cases.jsonl" line="10" time="0">
+      <system-out>warning pii-like: The answer of the case &quot;claims-002&quot; holds 3 things shaped like personal data: an email address at character 41, a phone number at character 75 and a card number at character 109. The values are not shown.</system-out>
+    </testcase>
+    <testcase classname="claims" name="claims-003" file="examples/bad/cases.jsonl" line="13" time="0"/>
+  </testsuite>
+  <testsuite name="(no category)" tests="1" failures="0" errors="0" skipped="0" time="0">
+    <testcase classname="(no category)" name="general-001" file="examples/bad/cases.jsonl" line="12" time="0">
+      <system-out>warning case-checks-nothing: The case &quot;general-001&quot; lists no expected fact, no alternatives, no forbidden phrase, no allowed source, no limit and no required refusal, so it can fail only the search for secrets and personal data.</system-out>
+    </testcase>
+  </testsuite>
+  <testsuite name="boundaries" tests="2" failures="0" errors="0" skipped="0" time="0">
+    <testcase classname="boundaries" name="boundaries-001" file="examples/bad/cases.jsonl" line="21" time="0"/>
+    <testcase classname="boundaries" name="boundaries-002" file="examples/bad/cases.jsonl" line="22" time="0"/>
+  </testsuite>
+  <testsuite name="input" tests="10" failures="0" errors="10" skipped="0" time="0">
+    <testcase classname="input" name="field-missing at line 11" file="examples/bad/cases.jsonl" line="11" time="0">
+      <error type="field-missing" message="The record has no &quot;id&quot;, which every case needs; the record was left out.">field-missing: The record has no &quot;id&quot;, which every case needs; the record was left out. Fix: Give every case an id and the answer that was given. An empty answer is a result too: write what the system returned, and let the other checks fail it.</error>
+    </testcase>
+    <testcase classname="input" name="question-empty at line 13" file="examples/bad/cases.jsonl" line="13" time="0">
+      <error type="question-empty" message="The case &quot;claims-003&quot; has no question.">question-empty: The case &quot;claims-003&quot; has no question. Fix: Write the question that was asked, so a person reading a finding can see what the answer was for.</error>
+    </testcase>
+    <testcase classname="input" name="id-duplicate at line 14" file="examples/bad/cases.jsonl" line="14" time="0">
+      <error type="id-duplicate" message="The id &quot;MOTOR-001&quot; is the id of the case on line 1 too; the second record was left out.">id-duplicate: The id &quot;MOTOR-001&quot; is the id of the case on line 1 too; the second record was left out. Fix: Give every case an id of its own.</error>
+    </testcase>
+    <testcase classname="input" name="field-unknown at line 15" file="examples/bad/cases.jsonl" line="15" time="0">
+      <error type="field-unknown" message="The field &quot;expected_fact&quot; is not a field the tool reads; did you mean &quot;expected_facts&quot;? Nothing under it is checked.">field-unknown: The field &quot;expected_fact&quot; is not a field the tool reads; did you mean &quot;expected_facts&quot;? Nothing under it is checked. Fix: Correct the name to a field of docs/inputs.md, or take the field out of the file.</error>
+    </testcase>
+    <testcase classname="input" name="field-invalid at line 16" file="examples/bad/cases.jsonl" line="16" time="0">
+      <error type="field-invalid" message="The field &quot;must_refuse&quot; is &quot;maybe&quot;, and must_refuse is yes, no or empty; the record was left out.">field-invalid: The field &quot;must_refuse&quot; is &quot;maybe&quot;, and must_refuse is yes, no or empty; the record was left out. Fix: Write the field as docs/inputs.md says: lists as JSON lists or as &quot;;&quot; lists in a cell, must_refuse as yes or no, max_chars as a whole number.</error>
+    </testcase>
+    <testcase classname="input" name="field-invalid at line 16" file="examples/bad/cases.jsonl" line="16" time="0">
+      <error type="field-invalid" message="The field &quot;max_chars&quot; is &quot;ten&quot;, and max_chars is a whole number from 1 to 100,000,000; the record was left out.">field-invalid: The field &quot;max_chars&quot; is &quot;ten&quot;, and max_chars is a whole number from 1 to 100,000,000; the record was left out. Fix: Write the field as docs/inputs.md says: lists as JSON lists or as &quot;;&quot; lists in a cell, must_refuse as yes or no, max_chars as a whole number.</error>
+    </testcase>
+    <testcase classname="input" name="field-missing at line 17" file="examples/bad/cases.jsonl" line="17" time="0">
+      <error type="field-missing" message="The case &quot;home-005&quot; has no &quot;answer&quot; (an empty answer is a missing one); the record was left out.">field-missing: The case &quot;home-005&quot; has no &quot;answer&quot; (an empty answer is a missing one); the record was left out. Fix: Give every case an id and the answer that was given. An empty answer is a result too: write what the system returned, and let the other checks fail it.</error>
+    </testcase>
+    <testcase classname="input" name="record-unreadable at line 18" file="examples/bad/cases.jsonl" line="18" time="0">
+      <error type="record-unreadable" message="The line is not valid JSON (near character 114); the record was left out.">record-unreadable: The line is not valid JSON (near character 114); the record was left out. Fix: Fix the line named: one JSON object on each line, or a cell with a comma, a tab or a line end inside double quotes.</error>
+    </testcase>
+    <testcase classname="input" name="record-unreadable at line 19" file="examples/bad/cases.jsonl" line="19" time="0">
+      <error type="record-unreadable" message="The line is a list, and every line of a JSON Lines file is an object; the record was left out.">record-unreadable: The line is a list, and every line of a JSON Lines file is an object; the record was left out. Fix: Fix the line named: one JSON object on each line, or a cell with a comma, a tab or a line end inside double quotes.</error>
+    </testcase>
+    <testcase classname="input" name="record-unreadable at line 20" file="examples/bad/cases.jsonl" line="20" time="0">
+      <error type="record-unreadable" message="The record is nested deeper than 4 levels, which no case needs; it was not parsed and was left out.">record-unreadable: The record is nested deeper than 4 levels, which no case needs; it was not parsed and was left out. Fix: Fix the line named: one JSON object on each line, or a cell with a comma, a tab or a line end inside double quotes.</error>
+    </testcase>
+  </testsuite>
+  <testsuite name="categories" tests="6" failures="4" errors="0" skipped="0" time="0">
+    <testcase classname="categories" name="pass rate of motor" time="0">
+      <failure type="category-pass-rate-below" message="1 of 3 cases pass (33.3 percent), below the minimum of 90 percent">1 of 3 cases pass (33.3 percent), below the minimum of 90 percent</failure>
+    </testcase>
+    <testcase classname="categories" name="pass rate of home" time="0">
+      <failure type="category-pass-rate-below" message="1 of 3 cases pass (33.3 percent), below the minimum of 90 percent">1 of 3 cases pass (33.3 percent), below the minimum of 90 percent</failure>
+    </testcase>
+    <testcase classname="categories" name="pass rate of travel" time="0">
+      <failure type="category-pass-rate-below" message="0 of 3 cases pass (0.0 percent), below the minimum of 90 percent">0 of 3 cases pass (0.0 percent), below the minimum of 90 percent</failure>
+    </testcase>
+    <testcase classname="categories" name="pass rate of claims" time="0">
+      <failure type="category-pass-rate-below" message="2 of 3 cases pass (66.7 percent), below the minimum of 90 percent">2 of 3 cases pass (66.7 percent), below the minimum of 90 percent</failure>
+    </testcase>
+    <testcase classname="categories" name="pass rate of (no category)" time="0"/>
+    <testcase classname="categories" name="pass rate of boundaries" time="0"/>
+  </testsuite>
+</testsuites>

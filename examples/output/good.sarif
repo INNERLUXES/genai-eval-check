@@ -1,0 +1,317 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "genai-eval-check",
+          "version": "1.0.0",
+          "informationUri": "https://github.com/INNERLUXES/genai-eval-check",
+          "rules": [
+            {
+              "id": "file-unreadable",
+              "name": "file-unreadable",
+              "shortDescription": {
+                "text": "the file is not JSON Lines or a table the reader can follow (a quote never closed, text after a closing quote, a cell too long, semicolons for commas, a list in place of lines), or holds no records, so nothing in it was checked"
+              },
+              "help": {
+                "text": "Save the file as JSON Lines, one object on each line, or as CSV with commas or TSV with tabs, a header row and one row for each case (docs/inputs.md); fix the line named. (input)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "input"
+              }
+            },
+            {
+              "id": "record-unreadable",
+              "name": "record-unreadable",
+              "shortDescription": {
+                "text": "a line that is not valid JSON, not an object, nested too deep or with too many fields, or a table row with more or fewer cells than the header; the record was left out of the evaluation"
+              },
+              "help": {
+                "text": "Fix the line named: one JSON object on each line, or a cell with a comma, a tab or a line end inside double quotes. (input)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "input"
+              }
+            },
+            {
+              "id": "field-missing",
+              "name": "field-missing",
+              "shortDescription": {
+                "text": "a record with no id or no answer (an empty answer counts as missing), or a header without an id or an answer column; the record was left out"
+              },
+              "help": {
+                "text": "Give every case an id and the answer that was given. An empty answer is a result too: write what the system returned, and let the other checks fail it. (input)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "input"
+              }
+            },
+            {
+              "id": "field-unknown",
+              "name": "field-unknown",
+              "shortDescription": {
+                "text": "a field or a column the tool does not read, often a misspelt name; nothing under it was checked"
+              },
+              "help": {
+                "text": "Correct the name to a field of docs/inputs.md, or take the field out of the file. (input)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "input"
+              }
+            },
+            {
+              "id": "field-invalid",
+              "name": "field-invalid",
+              "shortDescription": {
+                "text": "a field of the wrong type (a number where a list is read, a must_refuse that is not yes or no, a max_chars that is not a whole number), a list or a phrase over the limit, two fields with the same name, or a forbidden phrase with nothing left once normalized; the record was left out"
+              },
+              "help": {
+                "text": "Write the field as docs/inputs.md says: lists as JSON lists or as \";\" lists in a cell, must_refuse as yes or no, max_chars as a whole number. (input)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "input"
+              }
+            },
+            {
+              "id": "id-duplicate",
+              "name": "id-duplicate",
+              "shortDescription": {
+                "text": "two records with the same id, compared without regard to case and runs of white space; the second record was left out"
+              },
+              "help": {
+                "text": "Give every case an id of its own. (input)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "input"
+              }
+            },
+            {
+              "id": "question-empty",
+              "name": "question-empty",
+              "shortDescription": {
+                "text": "a record whose question is empty or missing; the answer is still checked"
+              },
+              "help": {
+                "text": "Write the question that was asked, so a person reading a finding can see what the answer was for. (input)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "input"
+              }
+            },
+            {
+              "id": "case-checks-nothing",
+              "name": "case-checks-nothing",
+              "shortDescription": {
+                "text": "a case that lists no expected fact, no group of alternatives, no forbidden phrase, no allowed source, no max_chars and no required refusal, and has no --max-chars to fall back on; it can only fail the search for secrets and personal data"
+              },
+              "help": {
+                "text": "Give the case at least one thing to look for, or take it out of the file; a case that cannot fail raises the pass rate. (case)"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "kind": "case"
+              }
+            },
+            {
+              "id": "fact-missing",
+              "name": "fact-missing",
+              "shortDescription": {
+                "text": "an expected fact, or a group of alternatives of which none appears, is not in the answer; every missing fact is listed"
+              },
+              "help": {
+                "text": "Check the answer for the fact. If the answer says it in other words, add the wording to the group in any_of; if the fact is wrong, correct it. (case)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "case"
+              }
+            },
+            {
+              "id": "source-not-allowed",
+              "name": "source-not-allowed",
+              "shortDescription": {
+                "text": "the answer cites a source outside the allowed set: a web address or a document id that is not in allowed_sources, or a marker such as [3] that sources does not explain"
+              },
+              "help": {
+                "text": "Remove the citation from the answer, or add the source to allowed_sources if it is a source the answer may use. (case)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "case"
+              }
+            },
+            {
+              "id": "source-missing",
+              "name": "source-missing",
+              "shortDescription": {
+                "text": "allowed_sources is given and the answer cites nothing, neither in cited_sources nor in its text; a case that expects a refusal is left out of this check"
+              },
+              "help": {
+                "text": "Make the system cite its source, or take allowed_sources out of the case if the answer needs none. (case)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "case"
+              }
+            },
+            {
+              "id": "forbidden-phrase",
+              "name": "forbidden-phrase",
+              "shortDescription": {
+                "text": "the answer holds a phrase from the forbidden list; every phrase found is listed with how many times"
+              },
+              "help": {
+                "text": "Remove the phrase from the answer, or take it out of the list if it is allowed after all. (case)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "case"
+              }
+            },
+            {
+              "id": "refusal-expected-but-answered",
+              "name": "refusal-expected-but-answered",
+              "shortDescription": {
+                "text": "must_refuse is yes and the answer holds none of the refusal phrases, so the system answered a question it should have declined"
+              },
+              "help": {
+                "text": "Look at the answer. If it is a refusal in words the list does not know, add the phrase with --refusal-phrases; if it is an answer, the system needs fixing. (case)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "case"
+              }
+            },
+            {
+              "id": "answered-expected-refusal-instead",
+              "name": "answered-expected-refusal-instead",
+              "shortDescription": {
+                "text": "must_refuse is no or empty and the answer holds a refusal phrase, so the system declined a question it should have answered"
+              },
+              "help": {
+                "text": "Look at the answer. If it is a real answer that happens to hold a refusal phrase, change the list with --refusal-phrases; if it is a refusal, the system needs fixing. (case)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "case"
+              }
+            },
+            {
+              "id": "answer-too-long",
+              "name": "answer-too-long",
+              "shortDescription": {
+                "text": "the answer has more characters (Unicode code points) than the max_chars of the case, or than --max-chars when the case sets none"
+              },
+              "help": {
+                "text": "Shorten the answer, or raise the limit if it was set too low. (case)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "case"
+              }
+            },
+            {
+              "id": "secret-like",
+              "name": "secret-like",
+              "shortDescription": {
+                "text": "the answer holds a string shaped like a private key, a seed phrase, an access key id, a token or a password written as an assignment; only the kind and the position are reported, never the value"
+              },
+              "help": {
+                "text": "Treat the string as exposed if it is real: remove it from the answer and from every place the file was copied to, and make the system stop printing it. If it is a made-up value, change it. (case)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "case"
+              }
+            },
+            {
+              "id": "pii-like",
+              "name": "pii-like",
+              "shortDescription": {
+                "text": "the answer holds something shaped like an email address, a phone number or a card number that passes the Luhn check; only the kind and the position are reported, never the value"
+              },
+              "help": {
+                "text": "If the data is real and should not be in an answer, make the system stop printing it. If the address is one the answer may give, list its domain with --allow-email-domains. (case)"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "kind": "case"
+              }
+            },
+            {
+              "id": "category-pass-rate-below",
+              "name": "category-pass-rate-below",
+              "shortDescription": {
+                "text": "the share of the cases of a category that pass (no error-level finding of a case) is below --min-pass-rate (default 90 percent) or below the --category-min of the category, compared exactly"
+              },
+              "help": {
+                "text": "Fix the cases of the category that fail, listed above in the same report, or change the minimum if it was set too high for what the category is worth. (category)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "kind": "category"
+              }
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "examples/good/cases.jsonl"
+          }
+        }
+      ],
+      "results": [],
+      "properties": {
+        "notice": "This report is deterministic string checking of answers that are already in the file. It never calls a model, it does not judge whether an answer is true beyond the facts and phrases the file lists, and it is not a full evaluation of a model.",
+        "result": "PASS - no finding at or above error"
+      }
+    }
+  ]
+}
